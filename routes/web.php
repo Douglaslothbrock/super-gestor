@@ -5,6 +5,7 @@ use App\Http\Controllers\{
     PrincipalController,
     SobrenosController,
     ContatoController
+    oi
 };
 
 /*
