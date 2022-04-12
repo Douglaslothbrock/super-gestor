@@ -4,9 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     PrincipalController,
     SobrenosController,
-    ContatoController
-    oi
+    ContatoController,
+    ClientesController,
+    ProdutosController,
+    FornecedoresController,
+    LoginController
 };
+use Illuminate\Routing\Route as RoutingRoute;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +23,23 @@ use App\Http\Controllers\{
 |
 */
 
-Route::get('/', [PrincipalController::class, 'index'])->name('principal.index');
+Route::get('/', [PrincipalController::class, 'index'])->name('site.index');
 
-Route::get('/sobre-nos', [SobrenosController::class, 'index'])->name('sobre-nos.index');
+Route::get('/sobre-nos', [SobrenosController::class, 'index'])->name('site.sobre-nos');
 
-Route::get('/contato', [ContatoController::class, 'index'])->name('Contato.index');
+Route::get('/contato', [ContatoController::class, 'index'])->name('site.contato');
+
+Route::get('/login', [LoginController::class, 'index'])->name('site.login');
+
+
+//APP's
+Route::group(['prefix'=>'/app'], function(){
+    Route::get('/clientes', [ClientesController::class, 'index'])->name('app.clientes');
+    Route::get('/fornecedores', [FornecedoresController::class, 'index'])->name('app.fornecedores');
+    Route::get('/produtos', [ProdutosController::class, 'index'])->name('app.produtos');
+});
+
+Route::fallback( function() {
+    echo 'A rota que deseja acessar não existe... <a href="/">Click aqui</a> para retornar ao início';
+});
+
