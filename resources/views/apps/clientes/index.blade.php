@@ -3,3 +3,5 @@
 @section('titulo', 'Super Gestão-Clientes')
     
 @section('conteudo')
+
+@endsection
