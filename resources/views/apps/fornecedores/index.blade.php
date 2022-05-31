@@ -1,1 +1,5 @@
-<h2>Fornecedores</h2>
+@extends('apps.layouts.basico')
+
+@section('titulo', 'Super Gestão-Fornecedores')
+    
+@section('conteudo')

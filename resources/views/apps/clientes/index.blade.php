@@ -1,5 +1,5 @@
 @extends('apps.layouts.basico')
 
-@section('titulo', 'Super Gestão-Contato')
+@section('titulo', 'Super Gestão-Clientes')
     
 @section('conteudo')

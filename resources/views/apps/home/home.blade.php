@@ -1,1 +1,5 @@
-<h1>Home</h1>
+@extends('apps.layouts.basico')
+
+@section('titulo', 'Super Gestão')
+    
+@section('conteudo')

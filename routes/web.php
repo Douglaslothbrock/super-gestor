@@ -8,7 +8,8 @@ use App\Http\Controllers\{
     ClientesController,
     ProdutosController,
     FornecedoresController,
-    LoginController
+    LoginController,
+    HomeController
 };
 
 use App\Http\Middleware\LogAcessoMiddleware;
@@ -40,7 +41,7 @@ Route::middleware('autenticacao:padrao')->prefix('/app')->group(function() {
     Route::get('/home', [HomeController::class, 'index'])->name('app.home');
     Route::get('/sair', [LoginController::class, 'sair'])->name('app.sair');
     Route::get('/clientes', [ClientesController::class, 'index'])->name('app.cliente');
-    Route::get('/fornecedores', [FornecedoresController::class, 'index'])->name('app.fornecedore');
+    Route::get('/fornecedores', [FornecedoresController::class, 'index'])->name('app.fornecedor');
     Route::get('/produtos', [ProdutosController::class, 'index'])->name('app.produto');
 });
 
