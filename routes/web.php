@@ -9,7 +9,9 @@ use App\Http\Controllers\{
     ProdutosController,
     FornecedoresController,
     LoginController,
-    HomeController
+    HomeController,
+    ProdutoDetalheController,
+    
 };
 
 use App\Http\Middleware\LogAcessoMiddleware;
@@ -41,6 +43,7 @@ Route::middleware('autenticacao:padrao')->prefix('/app')->group(function() {
     Route::get('/sair', [LoginController::class, 'sair'])->name('app.sair');
     Route::get('/clientes', [ClientesController::class, 'index'])->name('app.cliente');
 
+    //FORNECEDORES
     Route::get('/fornecedores', [FornecedoresController::class, 'index'])->name('app.fornecedor');
     Route::post('/fornecedores/listar', [FornecedoresController::class, 'listar'])->name('app.fornecedor.listar');
     Route::get('/fornecedores/listar', [FornecedoresController::class, 'listar'])->name('app.fornecedor.listar');
@@ -48,9 +51,14 @@ Route::middleware('autenticacao:padrao')->prefix('/app')->group(function() {
     Route::post('/fornecedores/adicionar', [FornecedoresController::class, 'adicionar'])->name('app.fornecedor.adicionar');
     Route::get('/fornecedores/editar/{fornecedor}', [FornecedoresController::class, 'editar'])->name('app.fornecedor.editar');
     Route::put('/fornecedores/atualizar/{fornecedor}', [FornecedoresController::class, 'atualizar'])->name('app.fornecedor.atualizar');
-    Route::post('/fornecedores/excluir/{fornecedor}', [FornecedoresController::class, 'excluir'])->name('app.fornecedor.excluir');
+    Route::get('/fornecedores/excluir/{fornecedor}', [FornecedoresController::class, 'excluir'])->name('app.fornecedor.excluir');
 
-    Route::get('/produtos', [ProdutosController::class, 'index'])->name('app.produto');
+    //PRODUTOS
+    Route::resource('produto', ProdutosController::class);
+
+    //PRODUTO-DETALHES
+    Route::resource('produto-detalhe', ProdutoDetalheController::class);
+    // Route::get('/produtos', [ProdutosController::class, 'index'])->name('app.produto');
 });
 
 Route::fallback( function() {

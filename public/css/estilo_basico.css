@@ -19,6 +19,10 @@ h2 {
     font-size: 22px;
 }
 
+a:href {
+    text-decoration: none;
+}
+
 input, select, textarea, button {
     width: 100%;
     padding: 10px 15px;
@@ -27,6 +31,11 @@ input, select, textarea, button {
     border-radius: 3px;
     background-color: transparent;
     color: #333;
+}
+
+.navegation {
+    
+    margin-top: 20px;
 }
 
 .texto-branco {
@@ -187,4 +196,14 @@ button:hover {
 
 .redes-sociais img {
     margin: 0px 15px 0px 15px;
+}
+
+.flex.justify-between  {
+    display: inline;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.pagination ul {
+    list-style-type: none;
 }

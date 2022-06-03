@@ -18,9 +18,10 @@ class FornecedoresController extends Controller
             ->where('email', 'like', '%'.$request->input('email').'%' )
             ->where('site', 'like', '%'.$request->input('site').'%' )
             ->where('uf', 'like', '%'.$request->input('uf').'%' )
-            ->paginate(2);
+            ->simplePaginate(3);
+        $request = $request->all();
 
-        return view('apps.fornecedores.listar', compact('fornecedores'));
+        return view('apps.fornecedores.listar', compact('fornecedores', 'request'));
     }
 
     public function adicionar(Request $request)
@@ -77,12 +78,15 @@ class FornecedoresController extends Controller
                 
         $msg = "O Registro foi Atualizado com Sucesso!!!";
 
-        return view('apps.fornecedores.adicionar', compact('msg'));
+        return view('apps.fornecedores.index', compact('msg'));
         
     }
 
-    public function excluir()
+    public function excluir(Fornecedor $fornecedor)
     {
+        $fornecedor->delete();
+        $msg = "O Registro foi Deletado com Sucesso!!!";
 
+        return view('apps.fornecedores.index', compact('msg'));
     }
 }

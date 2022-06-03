@@ -4,49 +4,59 @@
     
 @section('conteudo')
 <br><br>
-    <div class="conteudo-pagina">
-        <div class="titulo-pagina">
-            <p>Fornecedor - Listar</p>
-        </div>
+<div class="conteudo-pagina">
+    <div class="titulo-pagina">
+        <p>Fornecedor - Listar</p>
+    </div>
 
-        <div class="menu" style="margin: 5px">
-            <ul>
-                <li> <a href="{{ route('app.fornecedor.adicionar') }}">Novo Fornecedor</a> </li>
-                <li> <a href="{{ route('app.fornecedor') }}">Consultar</a> </li>
-            </ul>
-        </div>
+    <div class="menu mt-2 mb-2" style="margin-right: 5%">
+        <ul>
+            <li class="me-2">
+                <button class="btn btn-primary btn-sm" type="" onclick="location.href='{{route('app.fornecedor.adicionar') }}'"> <i class="bi bi-plus-circle"></i> NOVO FORNECEDOR
+                </button>
+            </li>
+            <li>
+                <button class="btn btn-primary btn-sm" type="" onclick="location.href='{{ route('app.fornecedor') }}'"> <i class="bi bi-search"></i> CONSULTAR
+                </button>
+            </li>
+        </ul>
+    </div>
 
-        <div class="informacao-pagina">
-            <div style="width: 90%; margin-left: auto; margin-right: auto;">
-                <table border="1" width="100%">
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>E-mail</th>
-                            <th>Site</th>
-                            <th>UF</th>
-                            <th colspan="2">Ações</th>
-                        </tr>
-                    </thead>
-                
+    <div class="informacao-pagina">
+        <div style="width: 90%; margin-left: auto; margin-right: auto;">
+            <table class="table table-striped table-hover table-bordered"  width="100%">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Site</th>
+                        <th>UF</th>
+                        <th colspan="2">Ações</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
                     @foreach ($fornecedores as $fornecedor)
-                        <tbody>
-                            <tr>
-                                <td>{{ $fornecedor->nome }}</td>
-                                <td>{{ $fornecedor->email }}</td>
-                                <td>{{ $fornecedor->site }}</td>
-                                <td>{{ $fornecedor->uf }}</td>
-                                <td><a href="{{ route('app.fornecedor.editar', $fornecedor->id) }}">Editar</a></td>
-                                <td><a href="{{ route('app.fornecedor.excluir', $fornecedor->id) }}">Excluir</a></td>
-                            </tr>
-                        </tbody>
-                        
+                        <tr>
+                            <td>{{ $fornecedor->nome }}</td>
+                            <td>{{ $fornecedor->email }}</td>
+                            <td>{{ $fornecedor->site }}</td>
+                            <td>{{ $fornecedor->uf }}</td>
+                            <td width="10%">
+                                <button class="btn btn-primary btn-sm" onclick="location.href='{{ route('app.fornecedor.editar', $fornecedor->id) }}'"><i class="bi bi-pencil-square"></i> Editar</button>
+                            </td>
+                            <td width="10%">
+                                <button class="btn btn-danger btn-sm" onclick="location.href='{{ route('app.fornecedor.excluir', $fornecedor->id) }}'"><i class="bi bi-trash"></i> Excluir</button>
+                            </td>
+                        </tr>
                     @endforeach
-
-                </table>
-                {{ $fornecedores->links() }}
-            </div>
+                </tbody>
+            </table>
             
+            <div class="navegation">
+                {{ $fornecedores->appends($request)->links() }}
+            </div>
         </div>
     </div>
+</div>
 @endsection

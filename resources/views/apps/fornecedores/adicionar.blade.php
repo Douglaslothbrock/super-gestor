@@ -9,10 +9,16 @@
             <p>Fornecedor - Adicionar</p>
         </div>
 
-        <div class="menu">
+        <div class="menu mt-2 mb-2" style="margin-right: 5%">
             <ul>
-                <li> <a href="{{ route('app.fornecedor.adicionar') }}">Novo Fornecedor</a> </li>
-                <li> <a href="{{ route('app.fornecedor') }}">Consultar</a> </li>
+                <li class="me-2">
+                    <button class="btn btn-primary btn-sm" type="" onclick="location.href='{{route('app.fornecedor.adicionar') }}'"> <i class="bi bi-plus-circle"></i> NOVO FORNECEDOR
+                    </button>
+                </li>
+                <li>
+                    <button class="btn btn-primary btn-sm" type="" onclick="location.href='{{ route('app.fornecedor') }}'"> <i class="bi bi-search"></i> CONSULTAR
+                    </button>
+                </li>
             </ul>
         </div>
 
@@ -23,22 +29,26 @@
                     <form action="{{ route('app.fornecedor.atualizar', $fornecedor->id) }}" method="POST">
                     @method('PUT')
                 @else
-                    {{ $msg }}
                     <form action="{{ route('app.fornecedor.adicionar') }}" method="POST">
                 @endif
                     @csrf
-                    <input type="text" name="nome" id="fornecedor" value="{{ (isset($fornecedor)) ? $fornecedor->nome : old('nome') }}"  placeholder="Insira o nome">
+
+                    <label for="nome" style="float: left">Nome *</label>
+                    <input type="text" class="form-control" name="nome" id="fornecedor" value="{{ (isset($fornecedor)) ? $fornecedor->nome : old('nome') }}"  placeholder="Insira o nome">
                     {{ $errors->has('nome') ? $errors->first('nome') : '' }}
 
-                    <input type="email" name="email" id="email" value="{{ (isset($fornecedor)) ? $fornecedor->email : old('email') }}"  placeholder="Insira o E-mail">
+                    <label for="email" style="float: left">E-mail *</label>
+                    <input type="email" class="form-control" name="email" id="email" value="{{ (isset($fornecedor)) ? $fornecedor->email : old('email') }}"  placeholder="Insira o E-mail">
                     {{ $errors->has('email') ? $errors->first('email') : '' }}
 
-                    <input type="text" name="site" id="site" value="{{ (isset($fornecedor)) ? $fornecedor->site : old('site') }}"  placeholder="Insira o site">
+                    <label for="site" style="float: left">Site *</label>
+                    <input type="text" class="form-control" name="site" id="site" value="{{ (isset($fornecedor)) ? $fornecedor->site : old('site') }}"  placeholder="Insira o site">
                     {{ $errors->has('site') ? $errors->first('site') : '' }}
 
-                    <input type="text" name="uf" id="uf" value="{{ (isset($fornecedor)) ? $fornecedor->uf : old('uf') }}"  placeholder="Insira o Uf">
+                    <label for="uf" style="float: left">UF *</label>
+                    <input type="text" class="form-control" name="uf" id="uf" value="{{ (isset($fornecedor)) ? $fornecedor->uf : old('uf') }}"  placeholder="Insira o Uf">
                     {{ $errors->has('uf') ? $errors->first('uf') : '' }}
-
+                    <br>
                     <button type="submit"> {{ (isset($fornecedor)) ? 'ATUALIZAR' : 'CADASTRAR' }}</button>
                 </form>
             </div>
