@@ -4,7 +4,6 @@
     
 @section('conteudo')
    <br><br>
-
    <div class="conteudo-pagina">
       <div class="titulo-pagina">
           <p> LISTA DOS PRODUTOS </p>
@@ -76,9 +75,6 @@
             </table>
          </div>
      </div>
-
-      
-
    </div>
    
 @endsection
