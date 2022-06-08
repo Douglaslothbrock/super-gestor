@@ -13,4 +13,9 @@ class Unidade extends Model
         'unidade',
         'descricao'
     ];
+
+    public function ProdutoDetalhe()
+    {
+        return $this->hasMany(ProdutoDetalhe::class);
+    }
 }

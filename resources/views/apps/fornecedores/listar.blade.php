@@ -49,6 +49,34 @@
                                 <button class="btn btn-danger btn-sm" onclick="location.href='{{ route('app.fornecedor.excluir', $fornecedor->id) }}'"><i class="bi bi-trash"></i> Excluir</button>
                             </td>
                         </tr>
+
+                        <tr>
+                            <td colspan="6">
+                                <p>Lista de Produtos</p>
+                                <table class="table table-striped table-hover table-bordered">
+                                    <thead class="table-secondary">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nome</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($fornecedor->Produtos as $produtos )
+                                        
+                                        <tr>
+                                            <td>
+                                                {{ ($produtos->id) ? $produtos->id : 'Não possuí'}}
+                                            </td>
+                                            <td>
+                                                {{ ($produtos->nome) ? $produtos->nome : 'Não possuí' }}
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+
                     @endforeach
                 </tbody>
             </table>

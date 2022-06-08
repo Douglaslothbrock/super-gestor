@@ -25,12 +25,13 @@
       </div>
 
       <div class="informacao-pagina">
-         <div style="width: 90%; margin-left: auto; margin-right: auto;">
+         <div style="width: 95%; margin-left: auto; margin-right: auto;">
             <table class="table table-striped table-hover table-bordered">
                <thead class="table-primary">
                   <tr>
                      <th>Id</th>
                      <th>Fornecedor</th>
+                     <th>Site Fornecedor</th>
                      <th>Nome Produto</th>
                      <th>Descricao</th>
                      <th>Peso</th>
@@ -45,6 +46,7 @@
                   <tr>
                      <td>{{ $produto->id }}</td>
                      <td>{{ $produto->Fornecedor->nome }}</td>
+                     <td>{{ $produto->Fornecedor->site }}</td>
                      <td>{{ $produto->nome }}</td>
                      <td>{{ $produto->descricao }}</td>
                      <td>{{ $produto->peso }}Kg</td>

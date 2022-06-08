@@ -15,6 +15,7 @@ use App\Http\Controllers\{
 };
 
 use App\Http\Middleware\LogAcessoMiddleware;
+use App\Models\Pedido;
 use Illuminate\Routing\Route as RoutingRoute;
 
 /*
@@ -41,7 +42,6 @@ Route::post('/login', [LoginController::class, 'autenticar'])->name('site.login'
 Route::middleware('autenticacao:padrao')->prefix('/app')->group(function() {
     Route::get('/home', [HomeController::class, 'index'])->name('app.home');
     Route::get('/sair', [LoginController::class, 'sair'])->name('app.sair');
-    Route::get('/clientes', [ClientesController::class, 'index'])->name('app.cliente');
 
     //FORNECEDORES
     Route::get('/fornecedores', [FornecedoresController::class, 'index'])->name('app.fornecedor');
@@ -59,6 +59,10 @@ Route::middleware('autenticacao:padrao')->prefix('/app')->group(function() {
     //PRODUTO-DETALHES
     Route::resource('produto-detalhe', ProdutoDetalheController::class);
     // Route::get('/produtos', [ProdutosController::class, 'index'])->name('app.produto');
+
+    Route::resource('cliente', ClientesController::class);
+    Route::resource('pedido ', PedidoController::class);
+    Route::resource('pedido-produto', PedidoProdutoController::class);
 });
 
 Route::fallback( function() {

@@ -21,4 +21,9 @@ class ProdutoDetalhe extends Model
     {
         return $this->belongsTo(Produto::class);
     }
+
+    public function Unidade()
+    {
+        return $this->hasOne(Unidade::class);
+    }
 }

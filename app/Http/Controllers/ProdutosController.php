@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fornecedor;
 use App\Models\Produto;
 use App\Models\Unidade;
 use Illuminate\Http\Request;
@@ -15,9 +16,9 @@ class ProdutosController extends Controller
      */
     public function index(Request $request)
     {
-        $produtos = Produto::simplePaginate(10);
-
-        return view('apps.produtos.index', compact('produtos'));
+        $produtos = Produto::with(['ProdutoDetalhe', 'Fornecedor'])->simplePaginate(10);
+        
+        return view('apps.produtos.index', compact('produtos', 'request'));
     }
 
     /**
@@ -28,8 +29,9 @@ class ProdutosController extends Controller
     public function create()
     {
         //
+        $fornecedores = Fornecedor::all();
         $unidades = Unidade::all();
-        return view('apps.produtos.create', compact('unidades'));
+        return view('apps.produtos.create', compact('unidades', 'fornecedores'));
     }
 
     /**
@@ -88,8 +90,9 @@ class ProdutosController extends Controller
     public function edit(Produto $produto)
     {
         //
+        $fornecedores = Fornecedor::all();
         $unidades = Unidade::all();
-        return view('apps.produtos.edit', compact('produto', 'unidades'));
+        return view('apps.produtos.edit', compact('produto', 'unidades', 'fornecedores'));
     }
 
     /**
@@ -101,8 +104,8 @@ class ProdutosController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
-        //
         $regras = [
+            'fornecedor_id' => 'required|integer',
             'nome' => 'required|min:3|max:40',
             'descricao' => 'required|min:3|max:400',
             'peso' => 'required|integer',
@@ -116,7 +119,9 @@ class ProdutosController extends Controller
             'descricao.min' => 'O campo descricao deve ter no minimo 3 Caractere.',
             'descricao.max' => 'O campo descricao deve ter no máximo 400 Caractere.',
             'peso.integer' => 'O campo Peso deve ser um número Inteiro',
-            'unidade_id.exists' => 'A unidade informada não existe'
+            'fornecedor_id.integer' => 'O campo Fornecedor deve ser Selecionado',
+            'unidade_id.exists' => 'A unidade informada não existe',
+            'fornecedor_id.exists' => 'O Fornecedor informado não existe'
         ];
 
         $request->validate($regras, $fedeeback);
